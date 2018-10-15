@@ -1,5 +1,5 @@
 # Sleep Study
-Sleep Study is an RSpec profiler that shows you which specs are spending the most time in `sleep`.
+Sleep Study is an RSpec formatter that shows you which specs are spending the most time in `sleep`.
 
 The `sleep` method can be a useful tool, especially in networking code (eg: backing off after hitting a rate limit, inserting a pause between polls of a remote job status, etc). In your test environment, however, those `sleep`s are generally unnecessary, and it's easy to forget to stub them and end up with specs that are wasting time `sleep`ing for no reason, adding to your build time. Running Sleep Study will identify these specs for you.
 
@@ -7,12 +7,12 @@ The `sleep` method can be a useful tool, especially in networking code (eg: back
 Sleep Study works by putting [tracers](https://ruby-doc.org/core-2.0.0/TracePoint.html) around every call and return of every C routine that your code calls, and saving benchmarking data if that routine is a `sleep` function. Ruby code executes a _lot_ of C routines. Those tracers are not free, and having them in place can add an extra 20-25% to your specs' execution time. As such, it's a good idea to run Sleep Study either in a separate CI build, or only occasionally to audit your test suite.
 
 ## Usage
-After adding `rspec-sleep_study` to your Gemfile, run RSpec with the `--profile SleepStudy` option.
+After adding `rspec-sleep_study` to your Gemfile, run RSpec with the `--format RSpec::SleepStudy` option.
 
 ## Example
 
 ```
-bundle exec rspec --format SleepStudy spec/
+bundle exec rspec --format RSpec::SleepStudy spec/
 
 .......................
 
