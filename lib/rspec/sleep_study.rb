@@ -20,20 +20,13 @@ module RSpec
       @tracers.each(&:enable)
     end
 
-    def example_failed(notification)
+    def example_ended(notification)
       @tracers.each(&:disable)
       record_time_slept(notification)
     end
-
-    def example_passed(notification)
-      @tracers.each(&:disable)
-      record_time_slept(notification)
-    end
-
-    def example_pending(notification)
-      @tracers.each(&:disable)
-      record_time_slept(notification)
-    end
+    alias example_failed example_ended
+    alias example_passed example_ended
+    alias example_pending example_ended
 
     def dump_summary(_notification)
       return unless sleepers_to_report.any?
