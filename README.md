@@ -14,8 +14,6 @@ After adding `rspec-sleep_study` to your Gemfile, run RSpec with the `--format R
 ```
 bundle exec rspec --format RSpec::SleepStudy spec/
 
-.......................
-
 The following examples spent the most time in `sleep`:
   20.57 seconds: ./spec/features/user_sends_email_spec.rb:23
   14.06 seconds: ./spec/features/apply_filters_spec.rb:39
