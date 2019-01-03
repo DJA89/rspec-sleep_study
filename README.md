@@ -1,5 +1,5 @@
 # Sleep Study
-Sleep Study is an RSpec formatter that shows you which specs are spending the most time in `sleep`.
+Sleep Study is an RSpec formatter that shows you which specs are spending the most time in `sleep`, and where exactly in your code those sleeps are happening.
 
 The `sleep` method can be a useful tool, especially in networking code (eg: backing off after hitting a rate limit, inserting a pause between polls of a remote job status, etc). In your test environment, however, those `sleep`s are generally unnecessary, and it's easy to forget to stub them and end up with specs that are wasting time `sleep`ing for no reason, adding to your build time. Running Sleep Study will identify these specs for you.
 
@@ -16,7 +16,10 @@ bundle exec rspec --format RSpec::SleepStudy spec/
 
 The following examples spent the most time in `sleep`:
   20.57 seconds: ./spec/features/user_sends_email_spec.rb:23
+    - 7.46 seconds: ./lib/api_client.rb:12
+    - 6.752 seconds: ./gems/selenium-webdriver/lib/selenium/webdriver/common/socket_poller.rb:108
   14.06 seconds: ./spec/features/apply_filters_spec.rb:39
+    - 5.21 seconds: ./lib/api_client.rb:12
   10.0 seconds: ./spec/features/password_reset_email_spec.rb:22
   10.0 seconds: ./spec/features/password_reset_email_spec.rb:47
   9.06 seconds: ./spec/features/dashboard_spec.rb:49
