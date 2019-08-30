@@ -1,4 +1,4 @@
-require "rspec"
+require "rspec/core"
 
 module RSpec
   class SleepStudy
